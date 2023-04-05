@@ -1,17 +1,14 @@
 import React from 'react';
-//import avatar from '../images/Avatar.svg';
 import editBtnImg from '../images/Edit_icon.svg';
 import addBtnImg from '../images/Add_icon.svg';
 import { api } from '../utils/Api';
 import Card from './Card';
-//import PopupWithForm from '../components/PopupWithForm.jsx';
 
 function Main(props) {
 	const [userName, setUserName] = React.useState('');
 	const [userDescription, setUserDescription] = React.useState('');
 	const [userAvatar, setUserAvatar] = React.useState('');
 	const [cards, setCards] = React.useState([]);
-
 
 	React.useEffect(() => {
 		api.getCards()
@@ -98,7 +95,7 @@ function Main(props) {
 						<Card key={
 							card._id}
 							card={card}
-							onClick={onCardClick} />))}
+							onCardClick={props.onCardClick} />))}
 				</ul>
 			</section>
 		</main>

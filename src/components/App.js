@@ -30,8 +30,8 @@ function App() {
     setisConfirmPopupOpen(true);
   };
 
-  function handleCardClick() {
-    setSelectedCard(selectedCard);
+  function handleCardClick(card) {
+    setSelectedCard(card);
   };
 
   function closeAllPopups() {
@@ -43,7 +43,6 @@ function App() {
   };
 
   return (
-
     <div className="root">
       <Header />
       <Main
@@ -51,41 +50,36 @@ function App() {
         onAddPlace={handleAddPlace}
         onEditAvatar={handleAvatarUpdate}
         onConfirmDelete={handleConfirmPopup}
-      />
-
+        onCardClick={handleCardClick} />
       <PopupWithForm
         name='profile'
         title='Редактировать профиль'
         buttonText='Сохранить'
         isOpen={isEditProfilePopupOpen}
         onClose={closeAllPopups}>
-
         <input
           className="popup__input popup__input_theme_light popup__input_type_element-name"
           type="text"
           name="element-name"
           id="element-name"
-          placeholder="Название"
+          placeholder="Имя"
           required
           minLength="2"
           maxLength="30" />
         <span
           className="popup__input-error element-name-error">
-
         </span>
         <input
           className="popup__input popup__input_theme_light popup__input_type_element-link"
           type="url"
           name="element-link"
           id="element-link"
-          placeholder="Ссылка на картинку"
+          placeholder="О себе"
           required />
         <span
           className="popup__input-error element-link-error">
-
         </span>
       </PopupWithForm>
-
       <PopupWithForm
         name='avatar'
         title='Обновить аватар'
@@ -100,10 +94,8 @@ function App() {
           placeholder="Ссылка на аватар"
           required />
         <span className="popup__input-error avatar-error">
-
         </span>
       </PopupWithForm>
-
       <PopupWithForm
         name='place'
         title='Новое место'
@@ -121,7 +113,6 @@ function App() {
           maxLength="30" />
         <span
           className="popup__input-error element-name-error">
-
         </span>
         <input
           className="popup__input popup__input_theme_light popup__input_type_element-link"
@@ -132,7 +123,6 @@ function App() {
           required />
         <span
           className="popup__input-error element-link-error">
-
         </span>
       </PopupWithForm>
       <PopupWithForm
@@ -146,9 +136,7 @@ function App() {
         card={selectedCard}
         onClose={closeAllPopups} />
       <Footer />
-
     </div>
-
   );
 }
 
