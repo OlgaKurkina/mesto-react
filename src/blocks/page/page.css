@@ -1,0 +1,15 @@
+.page {
+  min-height: 50vh;
+}
+
+@media screen and (max-width: 1279px) {
+  .page {
+    margin: 0 19px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .page {
+    margin: 0;
+  }
+}
