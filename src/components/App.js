@@ -11,8 +11,8 @@ function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
-
-
+  const [isConfirmPopupOpen, setisConfirmPopupOpen] = React.useState(false);
+  const [selectedCard, setSelectedCard] = React.useState('');
 
   function handleEditProfile() {
     setIsEditProfilePopupOpen(true);
@@ -26,11 +26,21 @@ function App() {
     setIsEditAvatarPopupOpen(true);
   };
 
+  function handleConfirmPopup() {
+    setisConfirmPopupOpen(true);
+  };
+
+  function handleCardClick() {
+    setSelectedCard(selectedCard);
+  };
+
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
-  }
+    setisConfirmPopupOpen(false);
+    setSelectedCard('');
+  };
 
   return (
 
@@ -39,7 +49,9 @@ function App() {
       <Main
         onEditProfile={handleEditProfile}
         onAddPlace={handleAddPlace}
-        onEditAvatar={handleAvatarUpdate} />
+        onEditAvatar={handleAvatarUpdate}
+        onConfirmDelete={handleConfirmPopup}
+      />
 
       <PopupWithForm
         name='profile'
@@ -48,12 +60,30 @@ function App() {
         isOpen={isEditProfilePopupOpen}
         onClose={closeAllPopups}>
 
-        <input className="popup__input popup__input_theme_light popup__input_type_element-name" type="text"
-          name="element-name" id="element-name" placeholder="Название" required minLength="2" maxLength="30" />
-        <span className="popup__input-error element-name-error"></span>
-        <input className="popup__input popup__input_theme_light popup__input_type_element-link" type="url"
-          name="element-link" id="element-link" placeholder="Ссылка на картинку" required />
-        <span className="popup__input-error element-link-error"></span>
+        <input
+          className="popup__input popup__input_theme_light popup__input_type_element-name"
+          type="text"
+          name="element-name"
+          id="element-name"
+          placeholder="Название"
+          required
+          minLength="2"
+          maxLength="30" />
+        <span
+          className="popup__input-error element-name-error">
+
+        </span>
+        <input
+          className="popup__input popup__input_theme_light popup__input_type_element-link"
+          type="url"
+          name="element-link"
+          id="element-link"
+          placeholder="Ссылка на картинку"
+          required />
+        <span
+          className="popup__input-error element-link-error">
+
+        </span>
       </PopupWithForm>
 
       <PopupWithForm
@@ -62,9 +92,16 @@ function App() {
         buttonText='Сохранить'
         isOpen={isEditAvatarPopupOpen}
         onClose={closeAllPopups}>
-        <input className="popup__input popup__input_edit_avatar" type="url" name="avatar" id="avatar"
-          placeholder="Ссылка на аватар" required />
-        <span className="popup__input-error avatar-error"></span>
+        <input
+          className="popup__input popup__input_edit_avatar"
+          type="url"
+          name="avatar"
+          id="avatar"
+          placeholder="Ссылка на аватар"
+          required />
+        <span className="popup__input-error avatar-error">
+
+        </span>
       </PopupWithForm>
 
       <PopupWithForm
@@ -73,14 +110,41 @@ function App() {
         buttonText='Создать'
         isOpen={isAddPlacePopupOpen}
         onClose={closeAllPopups}>
-        <input className="popup__input popup__input_theme_light popup__input_type_element-name" type="text"
-          name="element-name" id="element-name" placeholder="Название" required minLength="2" maxLength="30" />
-        <span className="popup__input-error element-name-error"></span>
-        <input className="popup__input popup__input_theme_light popup__input_type_element-link" type="url"
-          name="element-link" id="element-link" placeholder="Ссылка на картинку" required />
-        <span className="popup__input-error element-link-error"></span>
+        <input
+          className="popup__input popup__input_theme_light popup__input_type_element-name"
+          type="text"
+          name="element-name"
+          id="element-name"
+          placeholder="Название"
+          required
+          minLength="2"
+          maxLength="30" />
+        <span
+          className="popup__input-error element-name-error">
+
+        </span>
+        <input
+          className="popup__input popup__input_theme_light popup__input_type_element-link"
+          type="url"
+          name="element-link"
+          id="element-link"
+          placeholder="Ссылка на картинку"
+          required />
+        <span
+          className="popup__input-error element-link-error">
+
+        </span>
       </PopupWithForm>
-      <ImagePopup />
+      <PopupWithForm
+        name='сonfirm'
+        title='Вы уверены?'
+        buttonText='Да'
+        isOpen={isConfirmPopupOpen}
+        onClose={closeAllPopups}>
+      </PopupWithForm>
+      <ImagePopup
+        card={selectedCard}
+        onClose={closeAllPopups} />
       <Footer />
 
     </div>
