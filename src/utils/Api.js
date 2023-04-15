@@ -67,21 +67,11 @@ class Api {
     });
   }
 
-  //ставим лайк
-  setLike(id, card) {
+  changeLikeStatus(id, isLiked) {
     return this._getRequest(`${this._basePath}/cards/${id}/likes`, {
-      method: "PUT",
+      method: `${!isLiked ? "DELETE" : "PUT"}`,
       headers: this._headers,
-      body: JSON.stringify(card),
-    });
-  }
-
-  //удаляем лайк
-  unsetLike(id, card) {
-    return this._getRequest(`${this._basePath}/cards/${id}/likes`, {
-      method: "DELETE",
-      headers: this._headers,
-      body: JSON.stringify(card),
+      //body: JSON.stringify(card),
     });
   }
 }
