@@ -2,11 +2,13 @@ import React from "react";
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
-import PopupWithForm from "./PopupWithForm";
+//import PopupWithForm from "./PopupWithForm";
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
 import ImagePopup from "./ImagePopup";
+import ConfirmPopup from "./ConfirmPopup";
+
 import { api } from "../utils/Api";
 import { CurrentUserContext } from "../context/CurrentUserContext";
 
@@ -57,6 +59,8 @@ function App() {
   }
 
   function handleDeleteCard(card) {
+    //  setSelectedCard(card._id);
+    console.log(card);
     api
       .deleteMyCard(card._id)
       .then(() => {
@@ -122,7 +126,7 @@ function App() {
     setIsEditAvatarPopupOpen(true);
   }
 
-  function handleConfirmPopup() {
+  function handleConfirmPopup(card) {
     setisConfirmPopupOpen(true);
   }
 
@@ -150,8 +154,8 @@ function App() {
             onEditAvatar={handleAvatarUpdate}
             onCardClick={handleCardClick}
             onCardLike={handleCardLike}
-            //  onCardDelete={handleDeleteCard}
-            onCardDelete={handleConfirmPopup}
+            onCardDelete={handleDeleteCard}
+            //onCardDelete={handleConfirmPopup}
           />
           <EditProfilePopup
             isOpen={isEditProfilePopupOpen}
@@ -171,14 +175,12 @@ function App() {
             onAddNewCard={handleAddPlaceSubmit}
             onLoading={isLoading}
           />
-          <PopupWithForm
-            name="сonfirm"
-            title="Вы уверены?"
-            buttonText="Да"
-            isOpen={isConfirmPopupOpen}
-            onClose={closeAllPopups}
-            onSubmit={handleDeleteCard}
-          ></PopupWithForm>
+          <ConfirmPopup
+          //   selectedCard={selectedCard}
+          //   isOpen={isConfirmPopupOpen}
+          //   onClose={closeAllPopups}
+          //   onDeleteCard={handleDeleteCard}
+          />
           <ImagePopup card={selectedCard} onClose={closeAllPopups} />
           <Footer />
         </div>
