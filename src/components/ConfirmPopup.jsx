@@ -2,14 +2,14 @@ import React from "react";
 import PopupWithForm from "./PopupWithForm";
 
 export default function ConfirmPopup({
-  selectedCard,
+  deletedCard,
   isOpen,
   onClose,
   onDeleteCard,
 }) {
   function handleSubmit(evt) {
     evt.preventDefault();
-    onDeleteCard(selectedCard._id);
+    onDeleteCard(deletedCard);
   }
 
   return (
